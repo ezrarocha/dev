@@ -4,9 +4,9 @@ export const bookData = [
       name: "The Old Republic: Deceived",
       author: "Paul S. Kemp",
       date: "3-22-2011",
-      series: ["The Old Republic"],
-      era: ["Old Republic (5,000 - 67 BBY)"],
-      price: 7.99,
+      series: "The Old Republic",
+      era: "Old Republic (5,000 - 67 BBY)",
+      pages: 352,
       image: "images/deceived.png",
       Other: []
     },
@@ -15,9 +15,9 @@ export const bookData = [
       name: "The Old Republic: Revan",
       author: "Drew Karpyshyn",
       date: "11-15-2011",
-      series: ["The Old Republic"],
-      era: ["Old Republic (5,000 - 67 BBY)"],
-      price: 7.99,
+      series: "The Old Republic",
+      era: "Old Republic (5,000 - 67 BBY)",
+      pages: 298,
       image: "images/revan.png",
       Other: []
     },
@@ -26,9 +26,9 @@ export const bookData = [
       name: "Darth Bane: Path of Destruction",
       author: "Drew Karpyshyn",
       date: "9-26-2006",
-      series: ["Darth Bane"],
-      era: ["Old Republic (5,000 - 67 BBY)"],
-      price: 7.99,
+      series: "Darth Bane",
+      era: "Old Republic (5,000 - 67 BBY)",
+      pages: 324,
       image: "images/bane1.png",  
       Other: []
     },
@@ -37,9 +37,9 @@ export const bookData = [
       name: "Darth Bane: Rule of Two",
       author: "Drew Karpyshyn",
       date: "12-26-2007",
-      series: ["Darth Bane"],
-      era: ["Old Republic (5,000 - 67 BBY)"],
-      price: 7.99,
+      series: "Darth Bane",
+      era: "Old Republic (5,000 - 67 BBY)",
+      pages: 318,
       image: "images/bane2.png",
       Other: []
     },
@@ -48,9 +48,9 @@ export const bookData = [
       name: "Darth Bane: Dynasty of Evil",
       author: "Drew Karpyshyn",
       date: "12-8-2009",
-      series: ["Darth Bane"],
-      era: ["Old Republic (5,000 - 67 BBY)"],
-      price: 7.99,
+      series: "Darth Bane",
+      era: "Old Republic (5,000 - 67 BBY)",
+      pages: 296,
       image: "images/bane3.png",
       Other: []
     },
@@ -59,9 +59,9 @@ export const bookData = [
       name: "Heir to the Empire",
       author: "Timothy Zahn",
       date: "5-1-1991",
-      series: ["Thrawn"],
-      era: ["New Republic (5 - 25 ABY)"],
-      price: 7.99,
+      series: "Thrawn",
+      era: "New Republic (5 - 25 ABY)",
+      pages: 368,
       image: "images/thrawn1.png",
       Other: []
     },
@@ -70,9 +70,9 @@ export const bookData = [
       name: "Dark Force Rising",
       author: "Timothy Zahn",
       date: "5-1-1992",
-      series: ["Thrawn"],
-      era: ["New Republic (5 - 25 ABY)"],
-      price: 7.99,
+      series: "Thrawn",
+      era: "New Republic (5 - 25 ABY)",
+      pages: 384,
       image: "images/thrawn2.png",
       Other: []
     },
@@ -81,9 +81,9 @@ export const bookData = [
       name: "The Last Command",
       author: "Timothy Zahn",
       date: "4-1-1993",
-      series: ["Thrawn"],
-      era: ["New Republic (5 - 25 ABY)"],
-      price: 7.99,
+      series: "Thrawn",
+      era: "New Republic (5 - 25 ABY)",
+      pages: 416,
       image: "images/thrawn3.png",
       Other: []
     },
@@ -92,9 +92,9 @@ export const bookData = [
       name: "X-Wing: Rogue Squadron",
       author: "Michael A. Stackpole",
       date: "1-1-1996",
-      series: ["X-Wing"],
-      era: ["New Republic (5 - 25 ABY)"],
-      price: 7.99,
+      series: "X-Wing",
+      era: "New Republic (5 - 25 ABY)",
+      pages: 388,
       image: "images/xwing1.png",
       Other: []
     },
@@ -103,9 +103,9 @@ export const bookData = [
       name: "X-Wing: Wedge's Gamble",
       author: "Michael A. Stackpole",
       date: "5-2-1996",
-      series: ["X-Wing"],
-      era: ["New Republic (5 - 25 ABY)"],
-      price: 7.99,
+      series: "X-Wing",
+      era: "New Republic (5 - 25 ABY)",
+      pages: 357,
       image: "images/xwing2.png",
       Other: []
     },
@@ -114,9 +114,9 @@ export const bookData = [
       name: "X-Wing: The Krytos Trap",
       author: "Michael A. Stackpole",
       date: "10-2-1996",
-      series: ["X-Wing"],
-      era: ["New Republic (5 - 25 ABY)"],
-      price: 7.99,
+      series: "X-Wing",
+      era: "New Republic (5 - 25 ABY)",
+      pages: 355,
       image: "images/xwing3.png",
       Other: []
     },
@@ -125,9 +125,9 @@ export const bookData = [
       name: "Darth Maul: Shadow Hunter",
       author: "Michael Reeves",
       date: "1-30-2001",
-      series: ["Other"],
-      era: ["Rise of the Empire (67 - 0 BBY)"],
-      price: 7.99,
+      series: "Other",
+      era: "Rise of the Empire (67 - 0 BBY)",
+      pages: 320,
       image: "images/maul.png",
       Other: []
     },
@@ -136,9 +136,9 @@ export const bookData = [
       name: "Darth Plagueis",
       author: "James Luceno",
       date: "1-10-2012",
-      series: ["Other"],
-      era: ["Rise of the Empire (67 - 0 BBY)"],
-      price: 7.99,
+      series: "Other",
+      era: "Rise of the Empire (67 - 0 BBY)",
+      pages: 379,
       image: "images/plagueis.png",
       Other: []
     },
@@ -147,9 +147,9 @@ export const bookData = [
       name: "Kenobi",
       author: "John Jackson Miller",
       date: "8-27-2013",
-      series: ["Other"],
-      era: ["Rise of the Empire (67 - 0 BBY)"],
-      price: 7.99,
+      series: "Other",
+      era: "Rise of the Empire (67 - 0 BBY)",
+      pages: 400,
       image: "images/kenobi.png",
       Other: []
     },
@@ -158,9 +158,9 @@ export const bookData = [
       name: "Shatterpoint",
       author: "Matthew Stover",
       date: "6-3-2003",
-      series: ["Other"],
-      era: ["Rise of the Empire (67 - 0 BBY)"],
-      price: 7.99,
+      series: "Other",
+      era: "Rise of the Empire (67 - 0 BBY)",
+      pages: 406,
       image: "images/shatterpoint.png",
       Other: []
     },
@@ -169,9 +169,9 @@ export const bookData = [
       name: "Yoda: Dark Rendevous",
       author: "Steven D. Anderson",
       date: "11-23-2004",
-      series: ["Other"],
-      era: ["Rise of the Empire (67 - 0 BBY)"],
-      price: 7.99,
+      series: "Other",
+      era: "Rise of the Empire (67 - 0 BBY)",
+      pages: 352,
       image: "images/yoda.png",
       Other: []
     }  
@@ -180,14 +180,14 @@ export const bookData = [
 export const filterInfo = [
   {
     title: 'Series',
-    selections: ['The Old Republic', 'Darth Bane', 'Thrawn', 'X-Wing', 'Other']
+    filters: ['The Old Republic', 'Darth Bane', 'Thrawn', 'X-Wing', 'Other']
   },
   {
     title: 'Era',
-    selections: ['Old Republic (5,000 - 67 BBY)', 'Rise of the Empire (67 - 0 BBY)', 'New Republic (5 - 25 ABY)']
+    filters: ['Old Republic (5,000 - 67 BBY)', 'Rise of the Empire (67 - 0 BBY)', 'New Republic (5 - 25 ABY)']
   },
   {
     title: 'Other',
-    selections: ['Checked']
+    filters: ['Checked']
   }
 ]
