@@ -3,24 +3,18 @@ import { useState, useCallback} from "react";
 import { bookData, filterInfo } from './data';
 import BookItem from './components/BookItem';
 
-
 bookData.forEach((item) => {
   item.image = process.env.PUBLIC_URL + "/" + item.image;
 });
 
-function FilterList(props) {
-  const { 
-    info,
-    onFilterChange,
-  } = props
-
+function FilterList({info, onFilterChange}) {
   const list = info.map((category) => (
     <div>
       <h3>{category.title}</h3>
       {category.filters.map(filter => 
         <p>
           <input 
-            onChange={onFilterChange}
+            onChange={(e) => onFilterChange(e, category.title)}
             type="checkbox"
             value={filter}/>
           {filter}
@@ -36,63 +30,51 @@ function FilterList(props) {
   )
 }
 
-function BookList(props) {
-  const { books } = props
-  
-  return (
-    <div className="item-grid">
-      {books.map(item => (
-        <BookItem item={item} />
-      ))}
-    </div>
-  )
-}
 
 function App() {
   const [state, setState] = useState({
     books: bookData,
     filters: new Set(),
   });
+  // const [series, setSeries] = useState("All");
+  // const selectSeries = 
 
-  const handleFilterChange = useCallback(event => {
-    setState(previousState => {
-      let filters = new Set(previousState.filters)
-      let books = bookData
+
+  const [pages, setPages] = useState({
+    pageCount: 0,
+    booksRead: new Set()
+  });
+
+  const handleFilterChange = (event, title) => {   
+    const newFilters = state.filters
+    let newBooks = bookData
+    
+    if (event.target.checked) {
+      newFilters.add(event.target.value)
+    } else {
+      newFilters.delete(event.target.value)
+    }
+    if (newFilters.size) {
+      newBooks = bookData.filter(book => {
+        return (newFilters.has(book.series)|| newFilters.has(book.era))
+      })
+    }
+    setState({books: newBooks, filters: newFilters})
+  }
+
+  const handleUpdateCount = (event, item) => {
+    let newCount = pages.pageCount
+    let newBooksRead = new Set(pages.booksRead)
       
-      if (event.target.checked) {
-        filters.add(event.target.value)
-      } else {
-        filters.delete(event.target.value)
-      }
-      
-      if (filters.size) {
-        books = books.filter(book => {
-          return (filters.has(book.series)||filters.has(book.era))
-        })
-      }
-      return {
-        filters,
-        books,
-      }
-    })
-  }, [setState])
-
-  // const filteredData = bookData.filter(matchesFilterType);
-
-  // const selectFilterType = eventKey => {
-  //   setType(eventKey);
-  // };
-
-  // const matchesFilterType = item => {
-  //   // all items should be shown when no filter is selected
-  //   if(type === "All") { 
-  //     return true
-  //   } else if (type === item.type) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // };  
+    if (event.target.checked) {
+      newCount = newCount + Number(event.target.value)
+      newBooksRead.add(item)
+    } else {
+      newCount = newCount - Number(event.target.value)
+      newBooksRead.delete(item)
+    }
+    setPages({pageCount: newCount, booksRead: newBooksRead})
+  }
   
   return (
     <div className="App">
@@ -104,8 +86,13 @@ function App() {
           <FilterList 
             info={filterInfo}
             onFilterChange={handleFilterChange}/>
+          Total page count: {pages.pageCount}
         </div>
-        <BookList books={state.books}/>
+        <div className="item-grid">
+          {state.books.map(item => (
+            <BookItem item={item} updatePages={handleUpdateCount}/>
+          ))}
+        </div>
       </div>
     </div>
   );

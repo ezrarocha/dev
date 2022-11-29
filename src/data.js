@@ -185,9 +185,9 @@ export const filterInfo = [
   {
     title: 'Era',
     filters: ['Old Republic (5,000 - 67 BBY)', 'Rise of the Empire (67 - 0 BBY)', 'New Republic (5 - 25 ABY)']
-  },
-  {
-    title: 'Other',
-    filters: ['Checked']
   }
+  // {
+  //   title: 'Other',
+  //   filters: ['Checked']
+  // }
 ]

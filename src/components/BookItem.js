@@ -1,4 +1,4 @@
-export default function BookItem({item}) {
+export default function BookItem({item, updatePages}) {
     return (
         <div class="item-box">
             <img src={item.image}></img>
@@ -8,7 +8,12 @@ export default function BookItem({item}) {
                 <br></br>
                 <b>Orginally released:</b> {item.date}
             </p>
-            <button >Already Read!</button>
+            <input 
+            onChange={(e) => updatePages(e, item)}
+            type="checkbox"
+            value={item.pages}/>
+            Already read!
+            {/* <button onClick={() => updatePages(item.name, item.price)}>Already Read!</button> */}
         </div>
     );
 }
