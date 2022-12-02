@@ -41,21 +41,6 @@ function ReadList({handler}) {
   )
 }
 
-// function BookGrid({books, booksRead, checked, handler}) {
-//   let booksShown;
-//   if (checked) {
-//     booksShown = booksRead;
-//   } else {
-//     booksShown = books
-//   }
-//   return (
-//     <div className="item-grid">
-//       {books.map(item => (
-//         <BookItem item={item} updatePages={handler}/>
-//       ))}
-//     </div>
-//   )
-// }
 
 function App() {
   const [state, setState] = useState({
@@ -63,10 +48,9 @@ function App() {
     filters: new Set(),
   });
 
-  const [pages, setPages] = useState({
-    pageCount: 0,
-    booksRead: new Set()
-  });
+  const [count, setCount] = useState(0);
+  const [booksRead, setBooksRead] = useState(new Set());
+  const [checked, setChecked] = useState(false);
 
   const handleDateChange = (event) => {
     const currFilters = state.filters 
@@ -84,7 +68,7 @@ function App() {
     }
   }
 
-  const handleFilterChange = (event, title) => {   
+  const handleFilterChange = (event) => {   
     const newFilters = state.filters
     let newBooks = bookData
     
@@ -93,7 +77,19 @@ function App() {
     } else {
       newFilters.delete(event.target.value)
     }
-    if (newFilters.size) {
+
+    if (checked) {
+      if (newFilters.size) {
+        newBooks = bookData.filter(book => {
+          return (booksRead.has(book) && (newFilters.has(book.series) || newFilters.has(book.era)))
+        })
+      }
+      else {
+        newBooks = bookData.filter(book => {
+          return (booksRead.has(book))
+        })
+      }
+    } else if (newFilters.size) {
       newBooks = bookData.filter(book => {
         return (newFilters.has(book.series)|| newFilters.has(book.era))
       })
@@ -103,25 +99,26 @@ function App() {
 
   const handleReadList = (event) => {
     const newFilters = state.filters
-    const readBooks = pages.booksRead
+    const readBooks = booksRead
     let newBooks = bookData
+    let newChecked = !checked
+
     if (event.target.checked) {
       newBooks = state.books.filter(book => {
         return (readBooks.has(book))
       })
-    } else {
-      if (newFilters.size) {
+    } else if (newFilters.size) {
         newBooks = bookData.filter(book => {
           return (newFilters.has(book.series)|| newFilters.has(book.era))
-        })
-      }
+      })
     }
     setState({books: newBooks, filters: newFilters})
+    setChecked(newChecked)
   }
 
-  const handleUpdateCount = (event, item) => {
-    let newCount = pages.pageCount
-    let newBooksRead = new Set(pages.booksRead)
+  const handlePageCount = (event, item) => {
+    let newCount = count
+    let newBooksRead = new Set(booksRead)
       
     if (event.target.checked) {
       newCount = newCount + Number(event.target.value)
@@ -130,7 +127,8 @@ function App() {
       newCount = newCount - Number(event.target.value)
       newBooksRead.delete(item)
     }
-    setPages({pageCount: newCount, booksRead: newBooksRead})
+    setCount(newCount)
+    setBooksRead(newBooksRead)
   }
   
   return (
@@ -144,7 +142,7 @@ function App() {
             <h3>Sort</h3>
             <p>
               <input 
-                onChange={(e) => handleDateChange(e)}
+                onChange={handleDateChange}
                 type="checkbox"/>
               By Date
             </p>
@@ -154,11 +152,11 @@ function App() {
             onFilterChange={handleFilterChange}/>
           <ReadList
             handler={handleReadList}/>
-          Total page count: {pages.pageCount}
+          Total page count: {count}
         </div>
         <div className="item-grid">
           {state.books.map(item => (
-            <BookItem item={item} key={item.id} updatePages={handleUpdateCount}/>
+            <BookItem item={item} key={item.id} updatePages={handlePageCount}/>
           ))}
         </div>
       </div>
