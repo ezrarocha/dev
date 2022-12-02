@@ -8,7 +8,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 352,
       image: "images/deceived.png",
-      Other: []
+      Other: false
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 298,
       image: "images/revan.png",
-      Other: []
+      Other: false
     },
     {
       id: 3,
@@ -30,10 +30,10 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 324,
       image: "images/bane1.png",  
-      Other: []
+      Other: false
     },
     {
-      id: 3,
+      id: 4,
       name: "Darth Bane: Rule of Two",
       author: "Drew Karpyshyn",
       date: "12-26-2007",
@@ -41,10 +41,10 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 318,
       image: "images/bane2.png",
-      Other: []
+      Other: false
     },
     {
-      id: 4,
+      id: 5,
       name: "Darth Bane: Dynasty of Evil",
       author: "Drew Karpyshyn",
       date: "12-8-2009",
@@ -52,10 +52,10 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 296,
       image: "images/bane3.png",
-      Other: []
+      Other: false
     },
     {
-      id: 5,
+      id: 6,
       name: "Heir to the Empire",
       author: "Timothy Zahn",
       date: "5-1-1991",
@@ -63,10 +63,10 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 368,
       image: "images/thrawn1.png",
-      Other: []
+      Other: false
     },
     {
-      id: 6,
+      id: 7,
       name: "Dark Force Rising",
       author: "Timothy Zahn",
       date: "5-1-1992",
@@ -74,10 +74,10 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 384,
       image: "images/thrawn2.png",
-      Other: []
+      Other: false
     },
     {
-      id: 7,
+      id: 8,
       name: "The Last Command",
       author: "Timothy Zahn",
       date: "4-1-1993",
@@ -85,10 +85,10 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 416,
       image: "images/thrawn3.png",
-      Other: []
+      Other: false
     },
     {
-      id: 8,
+      id: 9,
       name: "X-Wing: Rogue Squadron",
       author: "Michael A. Stackpole",
       date: "1-1-1996",
@@ -96,10 +96,10 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 388,
       image: "images/xwing1.png",
-      Other: []
+      Other: false
     },
     {
-      id: 9,
+      id: 10,
       name: "X-Wing: Wedge's Gamble",
       author: "Michael A. Stackpole",
       date: "5-2-1996",
@@ -107,10 +107,10 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 357,
       image: "images/xwing2.png",
-      Other: []
+      Other: false
     },
     {
-      id: 10,
+      id: 11,
       name: "X-Wing: The Krytos Trap",
       author: "Michael A. Stackpole",
       date: "10-2-1996",
@@ -118,10 +118,10 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 355,
       image: "images/xwing3.png",
-      Other: []
+      Other: false
     },
     {
-      id: 11,
+      id: 12,
       name: "Darth Maul: Shadow Hunter",
       author: "Michael Reeves",
       date: "1-30-2001",
@@ -129,10 +129,10 @@ export const bookData = [
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 320,
       image: "images/maul.png",
-      Other: []
+      Other: false
     },
     {
-      id: 12,
+      id: 13,
       name: "Darth Plagueis",
       author: "James Luceno",
       date: "1-10-2012",
@@ -140,10 +140,10 @@ export const bookData = [
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 379,
       image: "images/plagueis.png",
-      Other: []
+      Other: false
     },
     {
-      id: 13,
+      id: 14,
       name: "Kenobi",
       author: "John Jackson Miller",
       date: "8-27-2013",
@@ -151,10 +151,10 @@ export const bookData = [
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 400,
       image: "images/kenobi.png",
-      Other: []
+      Other: false
     },
     {
-      id: 14,
+      id: 15,
       name: "Shatterpoint",
       author: "Matthew Stover",
       date: "6-3-2003",
@@ -162,10 +162,10 @@ export const bookData = [
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 406,
       image: "images/shatterpoint.png",
-      Other: []
+      Other: false
     },
     {
-      id: 15,
+      id: 16,
       name: "Yoda: Dark Rendevous",
       author: "Steven D. Anderson",
       date: "11-23-2004",
@@ -173,7 +173,7 @@ export const bookData = [
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 352,
       image: "images/yoda.png",
-      Other: []
+      Other: false
     }  
   ]
   
