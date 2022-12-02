@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useCallback} from "react";
+import { useState } from "react";
 import { bookData, filterInfo } from './data';
 import BookItem from './components/BookItem';
 
@@ -41,79 +41,95 @@ function ReadList({handler}) {
   )
 }
 
+function sortAndFilter(books, filters, nSort, checked, bRead) {
+  let newBooks = books
+  console.log("hi")
+  console.log(books)
+
+  filters.forEach((filter) => {
+    let currBooks = newBooks.filter(book => {
+      return ((book.series === filter) || (book.era === filter))
+    })
+    newBooks = currBooks
+  })
+  if (nSort) {
+    let c = [...newBooks]
+    newBooks = c.sort(function (a,b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+  }
+  if (checked) {
+    let currBooks = newBooks.filter(book => {
+      return (bRead.has(book))})
+      newBooks = currBooks
+  }
+  newBooks.forEach(book => {
+    if (bRead.has(book)) {
+      book.checked = true
+    } else {
+      book.checked = false
+    }
+  })
+  return (newBooks)
+}
+
+
 
 function App() {
-  const [state, setState] = useState({
-    books: bookData,
-    filters: new Set(),
-  });
+  const [state, setState] = useState({books: bookData});
+  const [filters, setFilters] = useState(new Set());
 
   const [count, setCount] = useState(0);
   const [booksRead, setBooksRead] = useState(new Set());
   const [checked, setChecked] = useState(false);
+  const [nameSorted, setNameSorted] = useState(false);
 
-  const handleDateChange = (event) => {
-    const currFilters = state.filters 
-    let copy1 = [...state.books]
-    let copy2 = [...state.books]
-    let currBooks = copy1.sort((a,b) => a.id - b.id);
-    let sortedBooks = copy2.sort((a,b) => 
-    new Date(a.date.split("-").reverse()) - new Date(b.date.split("-").reverse()));
-    
-    if (event.target.checked) {
-      setState({books: sortedBooks, filters: currFilters});
-    }
-    else {
-      setState({books: currBooks, filters: currFilters});
-    }
+  const handleNameSort = (event) => {
+    let newSort = !nameSorted
+    setNameSorted(newSort)
+
+    let b = sortAndFilter(bookData, filters, newSort, checked, booksRead)
+    setState({books: b})
   }
 
   const handleFilterChange = (event) => {   
-    const newFilters = state.filters
-    let newBooks = bookData
-    
+    const newFilters = filters
+
     if (event.target.checked) {
       newFilters.add(event.target.value)
     } else {
       newFilters.delete(event.target.value)
     }
+    setFilters(newFilters)
 
-    if (checked) {
-      if (newFilters.size) {
-        newBooks = bookData.filter(book => {
-          return (booksRead.has(book) && (newFilters.has(book.series) || newFilters.has(book.era)))
-        })
-      }
-      else {
-        newBooks = bookData.filter(book => {
-          return (booksRead.has(book))
-        })
-      }
-    } else if (newFilters.size) {
-      newBooks = bookData.filter(book => {
-        return (newFilters.has(book.series)|| newFilters.has(book.era))
-      })
-    }
-    setState({books: newBooks, filters: newFilters})
+    let b = sortAndFilter(bookData, newFilters, nameSorted, checked, booksRead)
+    setState({books: b})
   }
 
   const handleReadList = (event) => {
-    const newFilters = state.filters
-    const readBooks = booksRead
-    let newBooks = bookData
+    // const newFilters = filters
+    // const readBooks = booksRead
+    // let newBooks = bookData
     let newChecked = !checked
-
-    if (event.target.checked) {
-      newBooks = state.books.filter(book => {
-        return (readBooks.has(book))
-      })
-    } else if (newFilters.size) {
-        newBooks = bookData.filter(book => {
-          return (newFilters.has(book.series)|| newFilters.has(book.era))
-      })
-    }
-    setState({books: newBooks, filters: newFilters})
     setChecked(newChecked)
+
+    // if (event.target.checked) {
+    //   newBooks = state.books.filter(book => {
+    //     return (readBooks.has(book))
+    //   })
+    // } else if (newFilters.size) {
+    //     newBooks = bookData.filter(book => {
+    //       return (newFilters.has(book.series)||newFilters.has(book.era))
+    //   })
+    // }
+    let b = sortAndFilter(bookData, filters, nameSorted, newChecked, booksRead)
+    setState({books: b})
   }
 
   const handlePageCount = (event, item) => {
@@ -129,7 +145,21 @@ function App() {
     }
     setCount(newCount)
     setBooksRead(newBooksRead)
+
+    let b = sortAndFilter(bookData, filters, nameSorted, checked, newBooksRead)
+    setState({books: b})
   }
+
+  // bookData.forEach(book => {
+  //   if (booksRead.has(book)) {
+  //     book.checked = true
+  //   }
+  //   else {
+  //     book.checked = false
+  //   }
+  //   console.log(book.checked)
+  //   console.log(booksRead)
+  // });
   
   return (
     <div className="App">
@@ -142,9 +172,9 @@ function App() {
             <h3>Sort</h3>
             <p>
               <input 
-                onChange={handleDateChange}
+                onChange={handleNameSort}
                 type="checkbox"/>
-              By Date
+              By Name
             </p>
           </div>
           <FilterList 

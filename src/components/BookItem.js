@@ -11,7 +11,8 @@ export default function BookItem({item, updatePages}) {
             <input 
             onChange={(e) => updatePages(e, item)}
             type="checkbox"
-            value={item.pages}/>
+            value={item.pages}
+            checked={item.checked}/>
             Already read!
             {/* <button onClick={() => updatePages(item.name, item.price)}>Already Read!</button> */}
         </div>

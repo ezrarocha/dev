@@ -8,7 +8,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 352,
       image: "images/deceived.png",
-      Other: false
+      checked: false
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 298,
       image: "images/revan.png",
-      Other: false
+      checked: false
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 324,
       image: "images/bane1.png",  
-      Other: false
+      checked: false
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 318,
       image: "images/bane2.png",
-      Other: false
+      checked: false
     },
     {
       id: 5,
@@ -52,7 +52,7 @@ export const bookData = [
       era: "Old Republic (5,000 - 67 BBY)",
       pages: 296,
       image: "images/bane3.png",
-      Other: false
+      checked: false
     },
     {
       id: 6,
@@ -63,7 +63,7 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 368,
       image: "images/thrawn1.png",
-      Other: false
+      checked: false
     },
     {
       id: 7,
@@ -74,7 +74,7 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 384,
       image: "images/thrawn2.png",
-      Other: false
+      checked: false
     },
     {
       id: 8,
@@ -85,7 +85,7 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 416,
       image: "images/thrawn3.png",
-      Other: false
+      checked: false
     },
     {
       id: 9,
@@ -96,7 +96,7 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 388,
       image: "images/xwing1.png",
-      Other: false
+      checked: false
     },
     {
       id: 10,
@@ -107,7 +107,7 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 357,
       image: "images/xwing2.png",
-      Other: false
+      checked: false
     },
     {
       id: 11,
@@ -118,62 +118,62 @@ export const bookData = [
       era: "New Republic (5 - 25 ABY)",
       pages: 355,
       image: "images/xwing3.png",
-      Other: false
+      checked: false
     },
     {
       id: 12,
       name: "Darth Maul: Shadow Hunter",
       author: "Michael Reeves",
       date: "1-30-2001",
-      series: "Other",
+      series: "checked",
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 320,
       image: "images/maul.png",
-      Other: false
+      checked: false
     },
     {
       id: 13,
       name: "Darth Plagueis",
       author: "James Luceno",
       date: "1-10-2012",
-      series: "Other",
+      series: "checked",
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 379,
       image: "images/plagueis.png",
-      Other: false
+      checked: false
     },
     {
       id: 14,
       name: "Kenobi",
       author: "John Jackson Miller",
       date: "8-27-2013",
-      series: "Other",
+      series: "checked",
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 400,
       image: "images/kenobi.png",
-      Other: false
+      checked: false
     },
     {
       id: 15,
       name: "Shatterpoint",
       author: "Matthew Stover",
       date: "6-3-2003",
-      series: "Other",
+      series: "checked",
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 406,
       image: "images/shatterpoint.png",
-      Other: false
+      checked: false
     },
     {
       id: 16,
       name: "Yoda: Dark Rendevous",
       author: "Steven D. Anderson",
       date: "11-23-2004",
-      series: "Other",
+      series: "checked",
       era: "Rise of the Empire (67 - 0 BBY)",
       pages: 352,
       image: "images/yoda.png",
-      Other: false
+      checked: false
     }  
   ]
   
@@ -187,7 +187,7 @@ export const filterInfo = [
     filters: ['Old Republic (5,000 - 67 BBY)', 'Rise of the Empire (67 - 0 BBY)', 'New Republic (5 - 25 ABY)']
   }
   // {
-  //   title: 'Other',
+  //   title: 'checked',
   //   filters: ['Checked']
   // }
 ]
