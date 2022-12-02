@@ -3,11 +3,15 @@ export default function BookItem({item, updatePages}) {
         <div class="item-box">
             <img src={item.image}></img>
             <h2>{item.name}</h2>
+            <h4>by {item.author}</h4>
             <p>
-                <b>Author:</b> {item.author}
+                <b>Released:</b> {item.date} &nbsp; &nbsp; &nbsp; <b>Page count:</b> {item.pages}
                 <br></br>
-                <b>Orginally released:</b> {item.date}
+                <b>Era:</b> {item.era}
+                <br></br>
+                <b>Series:</b> {item.series}
             </p>
+            <p></p>
             <input 
             onChange={(e) => updatePages(e, item)}
             type="checkbox"

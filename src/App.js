@@ -1,31 +1,63 @@
 import './App.css';
 import { useState } from "react";
-import { bookData, filterInfo } from './data';
+import { bookData, seriesInfo, eraInfo, sortInfo } from './data';
 import BookItem from './components/BookItem';
 
 bookData.forEach((item) => {
   item.image = process.env.PUBLIC_URL + "/" + item.image;
 });
 
-function FilterList({info, onFilterChange}) {
-  const list = info.map((category) => (
-    <div>
-      <h3>{category.title}</h3>
-      {category.filters.map(filter => 
-        <p>
-          <input 
-            onChange={(e) => onFilterChange(e, category.title)}
-            type="checkbox"
-            value={filter}/>
-          {filter}
-        </p>
-      )}
-    </div>
+function SortList({nSort, aSort, sortInfo}) {
+  return (
+  <div>
+    <h3>Sort</h3>
+    <p>
+      <input 
+        onChange={nSort}
+        type="checkbox"
+        checked={sortInfo[0].checked}/>
+      By Title (A - Z)
+    </p>
+    <p>
+      <input 
+        onChange={aSort}
+        type="checkbox"
+        checked={sortInfo[1].checked}/>
+      By Author (A - Z)
+    </p>
+  </div>
+  )
+}
+
+function FilterList({seriesInfo, eraInfo, onFilterChange}) {
+  const seriesList = seriesInfo.map((f) => (
+    <p>
+      <input 
+        onChange={(e) => onFilterChange(e, f)}
+        type="checkbox"
+        value={f.filter}
+        checked={f.checked}/>
+      {f.filter}
+    </p>    
+  ));
+
+  const eraList = eraInfo.map((f) => (
+    <p>
+      <input 
+        onChange={(e) => onFilterChange(e, f)}
+        type="checkbox"
+        value={f.filter}
+        checked={f.checked}/>
+      {f.filter}
+    </p>    
   ));
 
   return (
     <div>
-      {list}
+      <h3>Series</h3>
+      {seriesList}
+      <h3>Eras</h3>
+      {eraList}
     </div>
   )
 }
@@ -41,7 +73,7 @@ function ReadList({handler}) {
   )
 }
 
-function sortAndFilter(books, filters, nSort, checked, bRead) {
+function sortAndFilter(books, filters, nSort, aSort, checked, bRead) {
   let newBooks = books
   console.log("hi")
   console.log(books)
@@ -64,6 +96,18 @@ function sortAndFilter(books, filters, nSort, checked, bRead) {
       return 0;
     })
   }
+  if (aSort) {
+    let c = [...newBooks]
+    newBooks = c.sort(function (a,b) {
+      if (a.author < b.author) {
+        return -1;
+      }
+      if (a.author > b.author) {
+        return 1;
+      }
+      return 0;
+    })
+  }
   if (checked) {
     let currBooks = newBooks.filter(book => {
       return (bRead.has(book))})
@@ -80,7 +124,6 @@ function sortAndFilter(books, filters, nSort, checked, bRead) {
 }
 
 
-
 function App() {
   const [state, setState] = useState({books: bookData});
   const [filters, setFilters] = useState(new Set());
@@ -89,18 +132,33 @@ function App() {
   const [booksRead, setBooksRead] = useState(new Set());
   const [checked, setChecked] = useState(false);
   const [nameSorted, setNameSorted] = useState(false);
+  const [authorSorted, setAuthorSorted] = useState(false);
+
 
   const handleNameSort = (event) => {
     let newSort = !nameSorted
     setNameSorted(newSort)
+    let c = sortInfo[0].checked
+    sortInfo[0].checked = !c
 
-    let b = sortAndFilter(bookData, filters, newSort, checked, booksRead)
+    let b = sortAndFilter(bookData, filters, newSort, authorSorted, checked, booksRead)
     setState({books: b})
   }
 
-  const handleFilterChange = (event) => {   
+  const handleAuthorSort = (event) => {
+    let newSort = !authorSorted
+    setAuthorSorted(newSort)
+    let c = sortInfo[1].checked
+    sortInfo[1].checked = !c
+
+    let b = sortAndFilter(bookData, filters, nameSorted, newSort, checked, booksRead)
+    setState({books: b})
+  }
+
+  const handleFilterChange = (event, filter) => {   
     const newFilters = filters
 
+    filter.checked = !filter.checked
     if (event.target.checked) {
       newFilters.add(event.target.value)
     } else {
@@ -108,27 +166,15 @@ function App() {
     }
     setFilters(newFilters)
 
-    let b = sortAndFilter(bookData, newFilters, nameSorted, checked, booksRead)
+    let b = sortAndFilter(bookData, newFilters, nameSorted, authorSorted, checked, booksRead)
     setState({books: b})
   }
 
   const handleReadList = (event) => {
-    // const newFilters = filters
-    // const readBooks = booksRead
-    // let newBooks = bookData
     let newChecked = !checked
     setChecked(newChecked)
 
-    // if (event.target.checked) {
-    //   newBooks = state.books.filter(book => {
-    //     return (readBooks.has(book))
-    //   })
-    // } else if (newFilters.size) {
-    //     newBooks = bookData.filter(book => {
-    //       return (newFilters.has(book.series)||newFilters.has(book.era))
-    //   })
-    // }
-    let b = sortAndFilter(bookData, filters, nameSorted, newChecked, booksRead)
+    let b = sortAndFilter(bookData, filters, nameSorted, authorSorted, newChecked, booksRead)
     setState({books: b})
   }
 
@@ -146,20 +192,29 @@ function App() {
     setCount(newCount)
     setBooksRead(newBooksRead)
 
-    let b = sortAndFilter(bookData, filters, nameSorted, checked, newBooksRead)
+    let b = sortAndFilter(bookData, filters, nameSorted, authorSorted, checked, newBooksRead)
     setState({books: b})
   }
 
-  // bookData.forEach(book => {
-  //   if (booksRead.has(book)) {
-  //     book.checked = true
-  //   }
-  //   else {
-  //     book.checked = false
-  //   }
-  //   console.log(book.checked)
-  //   console.log(booksRead)
-  // });
+  const handleReset = (event) => {
+    setState({books:bookData})
+    setFilters(new Set())
+    setBooksRead(new Set())
+    setCount(0)
+    setChecked(false)
+    setNameSorted(false)
+    sortInfo[0].checked = false
+    sortInfo[1].checked = false
+    bookData.forEach(book => {
+      book.checked = false
+    })
+    seriesInfo.forEach(f => {
+      f.checked = false
+    })
+    eraInfo.forEach(f => {
+      f.checked = false
+    })
+  }
   
   return (
     <div className="App">
@@ -169,20 +224,16 @@ function App() {
       <div className="main">
         <div className="side-bar">
           <div>
-            <h3>Sort</h3>
-            <p>
-              <input 
-                onChange={handleNameSort}
-                type="checkbox"/>
-              By Name
-            </p>
+            <button onClick={handleReset}>Reset All</button>
           </div>
+          <SortList nSort={handleNameSort} aSort={handleAuthorSort} sortInfo={sortInfo}/>
           <FilterList 
-            info={filterInfo}
+            seriesInfo={seriesInfo}
+            eraInfo={eraInfo}
             onFilterChange={handleFilterChange}/>
           <ReadList
             handler={handleReadList}/>
-          Total page count: {count}
+          Total pages read: {count}
         </div>
         <div className="item-grid">
           {state.books.map(item => (

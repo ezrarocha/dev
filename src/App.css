@@ -45,6 +45,10 @@
   font-family: 'Gill Sans MT';
 }
 
+button {
+  font-family: Verdana, sans-serif;
+}
+
 img {
   height: 200px;
   width: 140px;
